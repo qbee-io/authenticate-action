@@ -1,0 +1,19 @@
+# action.yml
+name: 'fetch jwt token'
+description: 'fetch jwt token for authentication'
+inputs:
+  login:  # id of input
+    description: 'login name for qbee.io'
+    required: true
+  password:  # id of input
+    description: 'login password for qbee.io'
+    required: true
+outputs:
+  token:
+    description: 'jwt token'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.login }}
+    - ${{ inputs.password }}
