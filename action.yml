@@ -8,6 +8,10 @@ inputs:
   password:  # id of input
     description: 'login password for qbee.io'
     required: true
+  api_host:  # id of input
+    description: 'api host to use'
+    required: false
+    default: 'www.app.qbee.io'
 outputs:
   token:
     description: 'jwt token'
@@ -17,3 +21,4 @@ runs:
   args:
     - ${{ inputs.login }}
     - ${{ inputs.password }}
+    - ${{ inputs.api_host }}
