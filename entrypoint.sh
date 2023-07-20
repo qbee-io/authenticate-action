@@ -2,12 +2,13 @@
 
 login=$1
 password=$2
+api_host=$3
 
-echo "init login $login and password $password"
+echo "init login $login and password $password on $api_host"
 
 successful_status_code='200'
 
-output=$(curl --request POST -sL --url 'https://www.app.qbee.io/api/v2/login' \
+output=$(curl --request POST -sL --url "https://$api_host/api/v2/login" \
         --header "Content-Type: application/json" \
         -d "{\"email\":\"$login\",\"password\":\"$password\"}" \
         -w "\n{\"http_code\":%{http_code}}\n")
