@@ -24,6 +24,5 @@ fi
 
 tokenValue=$(echo $output | jq -cs | jq -r '.[0].token')
 
-#echo "::set-output name=token::$tokenValue"
 echo "token=$tokenValue" >> $GITHUB_OUTPUT
 
