@@ -15,4 +15,4 @@ RUN echo "${QBEE_CLI_CHECKSUM}  /usr/local/bin/qbee-cli" | sha256sum -c -
 COPY entrypoint.sh /entrypoint.sh
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["bash", "/entrypoint.sh"]
+ENTRYPOINT ["sh", "/entrypoint.sh"]

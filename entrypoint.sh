@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/sh
 
 login=$1
 password=$2
