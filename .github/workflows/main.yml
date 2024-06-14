@@ -3,7 +3,7 @@ name: build
 on:
   push:
     branches:
-      - 'DEV-.+'
+      - DEV-2145/convert-to-qbee-cli
       - main
   pull_request:
     branches: [ main ]
