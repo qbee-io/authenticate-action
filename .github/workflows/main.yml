@@ -1,0 +1,28 @@
+name: build
+
+on:
+  push:
+    branches:
+      - 'DEV-**'
+      - main
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Verify that the Docker image for the action builds
+        run: docker build . --file Dockerfile
+
+      - name: Do simple integration test
+        uses: ./
+        with:
+          login: ${{ secrets.QBEE_USER }}
+          password: ${{ secrets.QBEE_PASSWORD }}
