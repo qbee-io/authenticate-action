@@ -1,0 +1,33 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Verify that the Docker image for the action builds
+        run: docker build . --file Dockerfile
+
+      - uses: convictional/trigger-workflow-and-wait@v1.6.5
+        with:
+          workflow_file_name: main.yml
+          ref: main
+          wait_interval: 10
+          client_payload: '{"authenticate_action_branch":"${{ github.head_ref || github.ref_name }}"}'
+          propagate_failure: true
+          trigger_workflow: true
+          wait_workflow: true
+          owner: qbee-io
+          repo: qbee-github-actions
+          github_token: ${{ secrets.GITHUB_PERSONAL_ACCESS_TOKEN }}
