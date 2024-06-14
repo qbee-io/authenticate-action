@@ -1,9 +1,3 @@
-#!/bin/sh
+#!/bin/sh -l
 
-login=$1
-password=$2
-api_host=$3
-
-echo "init login $login and password $password on $api_host"
-
-qbee-cli login -u $login -p $password -b https://$api_host
+qbee-cli login --email "$INPUT_LOGIN" --password "$INPUT_PASSWORD" -b "https://$INPUT_API_HOST"
