@@ -1,24 +1,19 @@
-# action.yml
-name: 'fetch jwt token'
-description: 'fetch jwt token for authentication'
+name: 'Authenticate Qbee Client'
+description: 'Authenticate the qbee-cli client for subsequent operations'
+branding:
+  icon: log-in
+  color: white
 inputs:
-  login:  # id of input
+  login:
     description: 'login name for qbee.io'
     required: true
-  password:  # id of input
+  password:
     description: 'login password for qbee.io'
     required: true
-  api_host:  # id of input
+  api_host:
     description: 'api host to use'
     required: false
     default: 'www.app.qbee.io'
-outputs:
-  token:
-    description: 'jwt token'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.login }}
-    - ${{ inputs.password }}
-    - ${{ inputs.api_host }}
